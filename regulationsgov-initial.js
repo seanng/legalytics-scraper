@@ -19,8 +19,12 @@ async function waitForFileToDownload(downloadPath) {
 
 function cleanFolder(downloadedPath, newFilename, downloadPath) {
   const newPath = path.resolve(__dirname, 'downloads', newFilename);
-  fs.renameSync(downloadedPath, newPath);
-  fs.rmdirSync(downloadPath);
+  fs.rename(downloadedPath, newPath, (err) => {
+    if (err) throw err;
+    fs.rmdir(downloadPath, { recursive: true }, (error) => {
+      if (error) throw error;
+    });
+  });
   return newPath;
 }
 
@@ -42,9 +46,10 @@ async function scrape() {
   const page = await browser.newPage();
   console.log('opening browser.');
   await page.setViewport({ width: 1280, height: 666 });
-  const newDocs = documents
-    // .slice(0, 10); configure AFTER ls | wc -l
-    
+  const newDocs = documents;
+  // .slice(34);
+  // configure AFTER ls | wc -l
+
   // eslint-disable-next-line
   for (let document of newDocs) {
     const titlePrefix = document['Document Title']
@@ -61,6 +66,5 @@ async function scrape() {
 }
 
 (async () => {
-  // for each documents,
   scrape();
 })();
