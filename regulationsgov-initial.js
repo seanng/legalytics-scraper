@@ -21,9 +21,7 @@ function cleanFolder(downloadedPath, newFilename, downloadPath) {
   const newPath = path.resolve(__dirname, 'downloads', newFilename);
   fs.rename(downloadedPath, newPath, (err) => {
     if (err) throw err;
-    fs.rmdir(downloadPath, { recursive: true }, (error) => {
-      if (error) throw error;
-    });
+    fs.rmdirSync(downloadPath, { recursive: true });
   });
   return newPath;
 }
