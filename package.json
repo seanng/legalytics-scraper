@@ -7,6 +7,7 @@
     "expect-puppeteer": "^4.3.0",
     "mkdirp": "^0.5.1",
     "puppeteer": "^1.20.0",
+    "rimraf": "^3.0.0",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
