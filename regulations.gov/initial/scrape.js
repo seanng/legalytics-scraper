@@ -64,9 +64,8 @@ function getTitle(document) {
 module.exports = async function scrape(page, idx) {
   /**
    * MAKE SURE downloads FOLDER IS EMPTY IF CHANGING START.
-   * NUMBERS MUST BE LESS THAN 68091
+   * NUMBERS MUST BE LESS THAN 68091 (and START < END obviously)
    */
-
   const START = 0;
   const END = 68091;
 
