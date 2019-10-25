@@ -56,9 +56,16 @@ async function download(page, title) {
 }
 
 function getTitle(document) {
-  const titlePrefix = document['Document Title']
-    .slice(9).split('-')[0].trim().toUpperCase();
-  return `${titlePrefix}_${document['Document ID']}.xlsx`;
+  let titlePrefix = 'PENDING_';
+  const upperCaseTitle = document['Document Title'].toUpperCase();
+
+  if (upperCaseTitle.includes('GRANTED')) {
+    titlePrefix = 'GRANTED_';
+  } else if (upperCaseTitle.includes('DENIED')) {
+    titlePrefix = 'DENIED_';
+  }
+
+  return `${titlePrefix}${document['Document ID']}.xlsx`;
 }
 
 module.exports = async function scrape(page, idx) {
