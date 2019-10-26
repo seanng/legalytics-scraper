@@ -78,8 +78,13 @@ module.exports = async function scrape(page, idx) {
 
   const documents = allDocuments.slice(START, END);
   let newIdx = idx;
+  let reattempts = 0;
 
   while (newIdx < documents.length) {
+    if (reattempts === 3) {
+      // skip the file.
+      newIdx++;
+    }
     const document = documents[newIdx];
     const title = getTitle(document);
 
@@ -89,6 +94,7 @@ module.exports = async function scrape(page, idx) {
       timeout: 18000,
     });
     const downloaded = await download(page, title);
+    reattempts = downloaded ? 0 : reattempts + 1;
     newIdx = downloaded ? newIdx + 1 : newIdx;
   }
 };
