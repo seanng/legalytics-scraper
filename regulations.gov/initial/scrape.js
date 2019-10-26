@@ -37,8 +37,8 @@ async function waitForFileToDownload(downloadPath) {
 }
 
 async function download(page, title) {
-  const nestedFolder = uuid();
-  const downloadPath = path.resolve(__dirname, 'downloads', nestedFolder);
+  const nestedFolder = uuid().slice(0, 10);
+  const downloadPath = path.resolve(__dirname, '../../../../', nestedFolder);
   mkdirp(downloadPath);
   await page._client.send('Page.setDownloadBehavior', { behavior: 'allow', downloadPath });
   await page.$eval(excelIconSelector, elem => elem.parentElement.click());
