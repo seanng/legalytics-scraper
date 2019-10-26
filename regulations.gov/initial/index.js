@@ -20,7 +20,7 @@ const exec = util.promisify(require('child_process').exec);
         '--ignore-certificate-errors-spki-list ',
       ],
       // 300 does not work.
-      slowMo: 400,
+      slowMo: 500,
     });
     const page = await browser.newPage();
     try {
