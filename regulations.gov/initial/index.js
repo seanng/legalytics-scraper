@@ -32,9 +32,9 @@ const exec = util.promisify(require('child_process').exec);
     console.error('error.name: ', error.name);
     console.error('error.message: ', error.message);
     await browser.close();
-    if (error.name === 'TimeoutError') {
-      setTimeout(init, 1000 * 60 * 10);
-    }
+    // if (error.name === 'TimeoutError') {
+    setTimeout(init, 1000 * 60 * 10);
+    // }
   }
 }());
 
