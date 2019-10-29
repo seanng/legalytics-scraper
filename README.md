@@ -7,7 +7,7 @@
 
 # FAQ:
 ## Debugging
-- To debug, insert new line after L22 in `index.js` with `headless: false`
+- To see what's going on, insert new line after L22 in `index.js` with `headless: false`
 - Try running again.
 - Call Sean if help needed
 ## Slowing it down
